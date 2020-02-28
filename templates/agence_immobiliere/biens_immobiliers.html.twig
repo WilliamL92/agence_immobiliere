@@ -12,8 +12,21 @@
 <p>Surface: {{ bien_immo.surface }} m²</p>
 <p>Prix: {{ bien_immo.prix }} €</p>
 <p>localisation: {{ bien_immo.localisation }}</p>
+<img src="{{ asset('images/biens/' ~ bien_immo.images) }}" width="200" alt="">
 <p>Date de mise en ligne: {{ bien_immo.dateDeCreation | date("d/m/Y à H:i") }}</p>
 <hr>
 {% endfor %}
+
+<h2 class="text-center">Ajouter un nouveau bien</h2>
+
+{{ form_start(form_biens) }}
+{{ form_row(form_biens.type,  {"label": "Entrez un type d'habitation:"}) }}
+{{ form_row(form_biens.surface,  {"label": "Entrez une surface (en m²):"}) }}
+{{ form_row(form_biens.prix,  {"label": "Entrez le prix du bien (en €):"}) }}
+{{ form_row(form_biens.localisation,  {"label": "Entrez une localisation:"}) }}
+{{ form_row(form_biens.images,  {"label": "Insérez une image:"}) }}
+<button type="submit" class="btn btn-success">Ajouter</button>
+{{ form_end(form_biens) }}
+<br>
 </div>
 {% endblock %}

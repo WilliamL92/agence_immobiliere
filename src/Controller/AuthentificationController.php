@@ -38,8 +38,6 @@ class AuthentificationController extends AbstractController
              return $this->redirectToRoute('authentification');
          }
 
-
-
          return $this->render("agence_immobiliere/authentification.html.twig", ["form_inscription" => $form_inscription->createView(), "form_connexion" => $form_connexion->createView(),"error"=>NULL,'last_username' => null]);
      }
 

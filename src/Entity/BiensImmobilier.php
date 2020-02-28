@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Webmozart\Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +41,12 @@ class BiensImmobilier
      * @ORM\Column(type="datetime")
      */
     private $dateDeCreation;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    
+    private $images;
 
     public function getId(): ?int
     {
@@ -102,6 +109,18 @@ class BiensImmobilier
     public function setDateDeCreation(\DateTimeInterface $dateDeCreation): self
     {
         $this->dateDeCreation = $dateDeCreation;
+
+        return $this;
+    }
+
+    public function getImages(): ?string
+    {
+        return $this->images;
+    }
+
+    public function setImages(string $images): self
+    {
+        $this->images = $images;
 
         return $this;
     }
