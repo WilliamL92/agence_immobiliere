@@ -64,13 +64,11 @@ class AuthentificationController extends AbstractController
 
         $membre = new Membres();
         $form_inscription = $this->createForm(InscriptionType::class, $membre);
-        $form_connexion = $this->createForm(ConnexionType::class, $membre);
 
         return $this->render('agence_immobiliere/authentification.html.twig', [
             'last_username' => $lastUsername,
              'error' => $error,
              "form_inscription" => $form_inscription->createView(),
-             "form_connexion" => $form_connexion->createView()
             ]);
     }
 

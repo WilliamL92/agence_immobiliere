@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+
+<h1>Bonjour {{app.user.prenom}} </h1>
+
+<a class="btn btn-danger" href="{{ path('user_delete', {id: app.user.id}) }}">Supprimmer mon compte</a>
+
+{% endblock %}
