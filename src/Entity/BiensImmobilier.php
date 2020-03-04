@@ -43,10 +43,10 @@ class BiensImmobilier
     private $dateDeCreation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="array")
      */
-    
-    private $images;
+    private $images = [];
+
 
     public function getId(): ?int
     {
@@ -113,15 +113,16 @@ class BiensImmobilier
         return $this;
     }
 
-    public function getImages(): ?string
+    public function getImages(): ?array
     {
         return $this->images;
     }
 
-    public function setImages(string $images): self
+    public function setImages(array $images): self
     {
         $this->images = $images;
 
         return $this;
     }
+    
 }

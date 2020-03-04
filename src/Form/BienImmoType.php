@@ -20,19 +20,9 @@ class BienImmoType extends AbstractType
             ->add('surface', IntegerType::class)
             ->add('prix', IntegerType::class)
             ->add('localisation', TextType::class)
-            ->add('images', FileType::class, ['constraints' => [
-                new File([
-                    'maxSize' => '20M',
-                    'mimeTypes' => [
-                        'image/jpg',
-                        'image/png',
-                        'image/jpeg',
-                        'image/gif'
-                    ],
-                    'mimeTypesMessage' => 'Fichier incorrect, les fichiers accepté sont les PNG, JPEG, JPG et GIF',
-                    'maxSizeMessage' => "Le fichier est trop lourd, le maximum est 20Mb"
-                ])
-                ], 'required' => 'true'])
+            ->add('images', FileType::class, ['multiple' => 'true',
+            'mapped' => 'false',
+            'required' => 'true',])
         ;
     }
 

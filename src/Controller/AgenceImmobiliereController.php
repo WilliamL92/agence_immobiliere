@@ -38,18 +38,22 @@ class AgenceImmobiliereController extends AbstractController
         if($form_biens->isSubmitted() && $form_biens->isValid()){
 
                 // upload de l'image
-            $image_file = $form_biens->get('images')->getData();
-            $original_image_name = pathinfo($image_file->getClientOriginalName(), PATHINFO_FILENAME);
+            $image_files = $form_biens->get('images')->getData();
+
+            foreach($image_files as $image_file){
+                $original_image_name = pathinfo($image_file->getClientOriginalName(), PATHINFO_FILENAME);
+        
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $original_image_name);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$image_file->guessExtension();
+                $image_file->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename);
+                    $imagesToDatabase[] = $newFilename;
+            }
+
+            $biens->setImages($imagesToDatabase);
             
-                    // this is needed to safely include the file name as part of the URL
-                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $original_image_name);
-                    $newFilename = $safeFilename.'-'.uniqid().'.'.$image_file->guessExtension();
-                    $image_file->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename);
-                        $biens->setImages($newFilename);
-
-
             $now = new \DateTime();
             $biens->setDateDeCreation($now);
 

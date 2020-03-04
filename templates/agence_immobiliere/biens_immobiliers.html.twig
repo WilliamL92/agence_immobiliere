@@ -12,7 +12,11 @@
 <p>Surface: {{ bien_immo.surface }} m²</p>
 <p>Prix: {{ bien_immo.prix }} €</p>
 <p>localisation: {{ bien_immo.localisation }}</p>
-<img src="{{ asset('images/biens/' ~ bien_immo.images) }}" width="200" alt="">
+
+{% for image in bien_immo.images  %}
+    <img src="{{ asset('images/biens/' ~ image) }}" width="200" alt="">
+{% endfor %}
+
 <p>Date de mise en ligne: {{ bien_immo.dateDeCreation | date("d/m/Y à H:i") }}</p>
 <hr>
 {% endfor %}
