@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Immobilier.com | Modification de biens{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Modifier le bien: </h1>
+<hr>
+
+
+
+
+{{ form_start(form_biens) }}
+{{ form_row(form_biens.type,  {"label": "Entrez un type d'habitation:"}) }}
+{{ form_row(form_biens.surface,  {"label": "Entrez une surface (en m²):"}) }}
+{{ form_row(form_biens.prix,  {"label": "Entrez le prix du bien (en €):"}) }}
+{{ form_row(form_biens.localisation,  {"label": "Entrez une localisation:"}) }}
+{{ form_row(form_biens.images,  {"label": "Ajoutez une image", "required": false}) }}
+<h3>Supprimmer des images</h3>
+{% for image in bien.images %}
+    <label for="image{{ loop.index0 }}" id="labelImg{{ loop.index0 }}" onclick='highlightDeletion("{{ loop.index0 }}")'>
+        <img width="200" src="{{ asset('images/biens/' ~ image) }}">
+    </label>
+    <input type="checkbox" name="image{{ loop.index0 }}" id="image{{ loop.index0 }}" hidden >
+{% endfor%}
+<br>
+<button type="submit" class="btn btn-success">Éditer</button>
+{{ form_end(form_biens) }}
+<br>
+</div>
+<style>
+    .hehehe{
+        box-shadow: 0 0 1em red;
+    }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+function highlightDeletion(id){
+    let element = document.getElementById("labelImg" + id)
+    let input = document.getElementById("image" + id)
+    
+    if (input.checked) {
+        element.className = "";
+    } else {
+        element.className = "hehehe";
+    }
+}
+</script>
+{% endblock %}

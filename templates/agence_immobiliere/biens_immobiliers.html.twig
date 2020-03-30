@@ -18,6 +18,8 @@
 {% endfor %}
 
 <p>Date de mise en ligne: {{ bien_immo.dateDeCreation | date("d/m/Y à H:i") }}</p>
+<a class="btn btn-success" href="/biens_immobiliers/{{ bien_immo.id}}/edit">Editer</a>
+<a class="btn btn-danger" href="/biens_immobiliers/{{ bien_immo.id}}/delete">Supprimmer</a>
 <hr>
 {% endfor %}
 
